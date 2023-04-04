@@ -1,3 +1,5 @@
+-- Write an SQL query to report the device that is first logged in for each player.
+
 SELECT
     player_id,
     device_id
