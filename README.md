@@ -1,2 +1,2 @@
-# SQL-queries
-A library of SQL queries that I wrote
+# LeetCode
+This repository contains solutions to SQL queries from LeetCode.com
