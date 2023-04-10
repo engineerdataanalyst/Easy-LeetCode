@@ -21,8 +21,8 @@ T2 AS
         duration,
         CASE
             WHEN 0 <= duration/60 AND duration/60 < 5 THEN '[0-5>'
-            WHEN 0 <= duration/60 AND duration/60 < 10 THEN '[5-10>'
-            WHEN 0 <= duration/60 AND duration/60 < 15 THEN '[10-15>'
+            WHEN 5 <= duration/60 AND duration/60 < 10 THEN '[5-10>'
+            WHEN 10 <= duration/60 AND duration/60 < 15 THEN '[10-15>'
             ELSE '15 or more'
         END AS bin
     FROM Sessions
