@@ -24,11 +24,11 @@ T2 AS
     GROUP BY question_id
 )
 SELECT
-	question_id AS survey_log
+    question_id AS survey_log
 FROM T1
 GROUP BY question_id
 HAVING MAX(answer_rate) = 
-	(SELECT MAX(answer_rate)
-	 FROM T2)
+    (SELECT MAX(answer_rate)
+     FROM T2)
 ORDER BY question_id
 LIMIT 1;
