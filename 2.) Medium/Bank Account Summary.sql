@@ -46,9 +46,6 @@ SELECT
         WHEN total_credits-total_paid_by+total_paid_to < 0 THEN 'Yes'
         ELSE 'No'
     END AS credit_limit_breached
-FROM
-    T1
-LEFT JOIN
-    T2 ON T1.user_id = T2.user_id
-LEFT JOIN
-    T3 ON T1.user_id = T3.user_id;
+FROM T1
+LEFT JOIN T2 ON T1.user_id = T2.user_id
+LEFT JOIN T3 ON T1.user_id = T3.user_id;
