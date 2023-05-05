@@ -35,7 +35,7 @@ FirstDate AS
 DateAdd AS
 (
     SELECT DATE_ADD(first_date, INTERVAL 6 DAY) AS date_add
-    FROM FirstDAte
+    FROM FirstDate
 )
 SELECT *
 FROM Averages
