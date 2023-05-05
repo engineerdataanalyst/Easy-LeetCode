@@ -2,7 +2,7 @@
    that got removed after being reported as spam, 
    rounded to 2 decimal places. */
 
-WITH ReportedPosts AS
+WITH ReportedSpams AS
 (
     SELECT
         user_id,
@@ -13,13 +13,20 @@ WITH ReportedPosts AS
     FROM Actions A
     WHERE action = 'report' AND extra = 'spam'
 ),
+TotalSpams AS
+(
+    SELECT
+        action_date,
+        COUNT(DISTINCT post_id) AS total_spams
+    FROM ReportedSpams
+    GROUP BY action_date
+),
 RemovedSpams AS
 (
     SELECT
-        post_id,
         action_date,
-        COUNT(post_id) AS removed_spams
-    FROM ReportedPosts
+        COUNT(DISTINCT post_id) AS removed_spams
+    FROM ReportedSpams
     WHERE post_id IN
     (
         SELECT post_id
@@ -27,23 +34,15 @@ RemovedSpams AS
     )
     GROUP BY action_date
 ),
-TotalSpams AS
-(
-    SELECT
-        R1.post_id,
-        R1.action_date,
-        R2.removed_spams,
-        COUNT(R1.action_date) AS total_spams
-    FROM ReportedPosts R1
-    LEFT JOIN RemovedSpams R2 ON R1.post_id = R2.post_id
-    GROUP BY action_date
-),
 RemovedSpamRatio AS
 (
     SELECT
-        action_date,
-        removed_spams/total_spams*100 AS removed_spam_ratio
-    FROM TotalSpams
+        T.action_date,
+        COALESCE(R.removed_spams, 0) AS removed_spams,
+        COALESCE(T.total_spams, 0) AS total_spams,
+        COALESCE(R.removed_spams/T.total_spams*100, 0) AS removed_spam_ratio
+    FROM TotalSpams T
+    LEFT JOIN RemovedSpams R ON T.action_date = R.action_date
 )
 SELECT ROUND(AVG(removed_spam_ratio), 2) AS average_daily_percent
 FROM RemovedSpamRatio;
