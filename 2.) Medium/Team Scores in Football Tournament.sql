@@ -3,11 +3,11 @@
    A team receives one point if they draw a match (i.e., Scored the same number of goals as the opponent team).
    A team receives no points if they lose a match (i.e., Scored fewer goals than the opponent team).
   
-  Write an SQL query that selects the team_id, team_name and num_points 
-  of each team in the tournament after all described matches.
+   Write an SQL query that selects the team_id, team_name and num_points 
+   of each team in the tournament after all described matches.
   
-  Return the result table ordered by num_points in decreasing order. 
-  In case of a tie, order the records by team_id in increasing order. */
+   Return the result table ordered by num_points in decreasing order. 
+   In case of a tie, order the records by team_id in increasing order. */
 
 WITH HostTeam AS
 (
