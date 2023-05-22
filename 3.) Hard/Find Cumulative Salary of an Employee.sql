@@ -7,7 +7,8 @@
    Do not include the 3-month sum for the most recent month that the employee worked for in the summary.
 
    Do not include the 3-month sum for any month the employee did not work.
-   Return the result table ordered by id in ascending order. In case of a tie, order it by month in descending order. */
+   Return the result table ordered by id in ascending order. 
+   In case of a tie, order it by month in descending order. */
 
 WITH RECURSIVE Months AS
 (
