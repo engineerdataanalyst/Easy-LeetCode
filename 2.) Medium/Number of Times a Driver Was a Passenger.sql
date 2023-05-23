@@ -5,7 +5,7 @@ SELECT
     (
         SELECT COUNT(*)
         FROM Rides R1
-        WHERE R2.driver_id = R1.passenger_id
+        WHERE R1.passenger_id = R2.driver_id
     ) AS cnt
 FROM Rides R2
 GROUP BY driver_id
