@@ -29,7 +29,7 @@ SELECT
                   WHEN (SELECT N1.num_tiv_2015
                         FROM NumberOfTiv_2015s N1
                         WHERE N1.tiv_2015 = N2.tiv_2015) >= 2 AND
-                       (SELECT COUNT(N1.row_num)
+                       (SELECT MAX(N1.row_num)
                         FROM NewInsurance N1
                         WHERE N1.lat = N2.lat AND
                               N1.lon = N2.lon) = 1 THEN N2.tiv_2016
