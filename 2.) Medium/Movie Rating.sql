@@ -28,14 +28,14 @@ NumberOfMovieRatings AS
         DENSE_RANK() OVER(ORDER BY num_movie_ratings DESC) AS rank_num
     FROM
     (
-      SELECT
-          user_id,
-          name,
-          COUNT(created_at) AS num_movie_ratings
-      FROM NewMovieRating
-      GROUP BY
-          user_id,
-          name
+        SELECT
+            user_id,
+            name,
+            COUNT(created_at) AS num_movie_ratings
+        FROM NewMovieRating
+        GROUP BY
+            user_id,
+            name
     ) N
 ),
 AverageMovieRatings AS
