@@ -8,7 +8,7 @@ WITH SwappedId AS
     SELECT
         CASE
             WHEN MOD(S2.id, 2) != 0 AND
-                 S2.id = (SELECT MAX(id) FROM Seat) THEN S2.id
+                 S2.id = (SELECT MAX(S1.id) FROM Seat S1) THEN S2.id
             WHEN MOD(S2.id, 2) != 0 THEN (SELECT id
                                           FROM Seat S1
                                           WHERE S1.id = S2.id+1)
@@ -29,7 +29,7 @@ SwappedSeat AS
 SELECT
     CASE
         WHEN MOD(S2.id, 2) != 0 AND
-             S2.id = (SELECT MAX(id) FROM Seat) THEN S2.id
+             S2.id = (SELECT MAX(S1.id) FROM Seat S1) THEN S2.id
         WHEN MOD(S2.id, 2) = 0 THEN (SELECT id
                                      FROM SwappedSeat S1
                                      WHERE S1.id = S2.id-1)
