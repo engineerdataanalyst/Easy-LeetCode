@@ -16,13 +16,10 @@ WITH NumberOfRequestAccepted (num_request_accepted) AS
     SELECT COUNT(*)
     FROM
     (
-        SELECT
+        SELECT DISTINCT
             requester_id,
             accepter_id
         FROM RequestAccepted
-        GROUP BY
-            requester_id,
-            accepter_id
     ) R
 ),
 NumberOfFriendRequest (num_friend_request) AS
@@ -30,13 +27,10 @@ NumberOfFriendRequest (num_friend_request) AS
     SELECT COUNT(*)
     FROM
     (
-        SELECT
+        SELECT DISTINCT
             sender_id,
             send_to_id
         FROM FriendRequest
-        GROUP BY
-            sender_id,
-            send_to_id
     ) F
 )
 SELECT COALESCE(ROUND(num_request_accepted/num_friend_request, 2), 0) AS accept_rate
