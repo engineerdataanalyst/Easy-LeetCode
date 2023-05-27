@@ -39,5 +39,5 @@ NumberOfFriendRequest (num_friend_request) AS
             send_to_id
     ) F
 )
-SELECT COALESCE(ROUND(num_request_accepted/num_friend_request, 2), 0) as accept_rate
+SELECT COALESCE(ROUND(num_request_accepted/num_friend_request, 2), 0) AS accept_rate
 FROM NumberOfRequestAccepted, NumberOfFriendRequest;
