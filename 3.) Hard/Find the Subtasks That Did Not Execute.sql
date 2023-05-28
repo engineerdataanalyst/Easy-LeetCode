@@ -21,8 +21,8 @@ NewExecuted AS
                                FROM Tasks T2
                                WHERE T1.task_id = T2.task_id)
     ORDER BY
-        task_id,
-        subtask_id
+        T1.task_id,
+        S.subtask_id
 )
 SELECT
     N.task_id,
@@ -32,5 +32,5 @@ LEFT JOIN Executed E ON N.task_id = E.task_id AND
                         N.subtask_id = E.subtask_id
 WHERE E.task_id IS NULL
 ORDER BY
-    task_id,
-    subtask_id;
+    N.task_id,
+    N.subtask_id;
