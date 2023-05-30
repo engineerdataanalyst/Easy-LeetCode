@@ -32,7 +32,7 @@ LikedPages AS
         CONCAT(',', GROUP_CONCAT(DISTINCT F.user_id ORDER BY F.user_id), ',') AS liked_users
     FROM Friends F
     LEFT JOIN Likes L ON F.user_id = L.user_id
-    GROUP BY page_id
+    GROUP BY L.page_id
 )
 SELECT
     F.user_id,
