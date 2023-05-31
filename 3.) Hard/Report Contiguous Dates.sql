@@ -17,7 +17,7 @@ WITH RECURSIVE NewFailed AS
     (
         SELECT
             fail_date,
-            LAG(fail_date) OVER() AS lag_fail_date,
+            COALESCE(LAG(fail_date) OVER(), fail_date) AS lag_fail_date,
             ROW_NUMBER() OVER() AS row_num
         FROM Failed
         ORDER BY fail_date
@@ -32,8 +32,7 @@ WITH RECURSIVE NewFailed AS
         DATEDIFF(F.fail_date, F.lag_fail_date) AS fail_date_difference,
         F.row_num,
         CASE
-            WHEN DATEDIFF(F.fail_date, F.lag_fail_date) > 1 OR
-                 DATEDIFF(F.fail_date, F.lag_fail_date) IS NULL THEN group_num+1
+            WHEN DATEDIFF(F.fail_date, F.lag_fail_date) > 1 THEN group_num+1
             ELSE group_num
         END AS group_num
     FROM
@@ -41,7 +40,7 @@ WITH RECURSIVE NewFailed AS
         (
             SELECT
                 fail_date,
-                LAG(fail_date) OVER() AS lag_fail_date,
+                COALESCE(LAG(fail_date) OVER(), fail_date) AS lag_fail_date,
                 ROW_NUMBER() OVER() AS row_num
             FROM Failed
             ORDER BY fail_date
@@ -61,7 +60,7 @@ NewSucceeded AS
     (
         SELECT
             success_date,
-            LAG(success_date) OVER() AS lag_success_date,
+            COALESCE(LAG(success_date) OVER(), success_date) AS lag_success_date,
             ROW_NUMBER() OVER() AS row_num
         FROM Succeeded
         ORDER BY success_date
@@ -76,8 +75,7 @@ NewSucceeded AS
         DATEDIFF(S.success_date, S.lag_success_date) AS success_date_difference,
         S.row_num,
         CASE
-            WHEN DATEDIFF(S.success_date, S.lag_success_date) > 1 OR
-                 DATEDIFF(S.success_date, S.lag_success_date) IS NULL THEN group_num+1
+            WHEN DATEDIFF(S.success_date, S.lag_success_date) > 1 THEN group_num+1
             ELSE group_num
         END AS group_num
     FROM
@@ -85,7 +83,7 @@ NewSucceeded AS
         (
             SELECT
                 success_date,
-                LAG(success_date) OVER() AS lag_success_date,
+                COALESCE(LAG(success_date) OVER(), success_date) AS lag_success_date,
                 ROW_NUMBER() OVER() AS row_num
             FROM Succeeded
             ORDER BY success_date
