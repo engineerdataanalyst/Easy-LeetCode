@@ -22,9 +22,8 @@ RowNumbers AS
 (
     SELECT
         num,
-        ROW_NUMBER() OVER() AS row_num
+        ROW_NUMBER() OVER(ORDER BY num) AS row_num
     FROM UnpackedNumbers
-    ORDER BY num
 ),
 MaxRowNumber(num) AS
 (
