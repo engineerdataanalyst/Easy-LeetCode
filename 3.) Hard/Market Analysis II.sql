@@ -7,7 +7,7 @@ WITH RowNumbers AS
     SELECT
         U.user_id,
         O.seller_id,
-        O.item_id AS item_id,
+        O.item_id,
         I.item_brand,
         U.favorite_brand,
         ROW_NUMBER() OVER(PARTITION BY O.seller_id ORDER BY O.order_date) AS row_num
