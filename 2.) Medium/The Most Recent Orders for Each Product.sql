@@ -11,7 +11,7 @@ WITH NewOrders AS
         O.customer_id,
         O.product_id,
         P.product_name,
-        DENSE_RANK() OVER(PARTITION BY product_id ORDER BY order_date DESC) AS rank_num
+        DENSE_RANK() OVER(PARTITION BY O.product_id ORDER BY O.order_date DESC) AS rank_num
     FROM Orders O
     LEFT JOIN Products P ON O.product_id = P.product_id
 )
