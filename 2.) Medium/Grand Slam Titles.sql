@@ -49,4 +49,5 @@ FROM Wimbledon W
 LEFT JOIN Fr_open F ON W.player_id = F.player_id
 LEFT JOIN US_open U ON W.player_id = U.player_id
 LEFT JOIN Au_open A ON W.player_id = A.player_id
-WHERE W.grand_slams_count+F.grand_slams_count+U.grand_slams_count+A.grand_slams_count > 0;
+WHERE W.grand_slams_count+F.grand_slams_count+U.grand_slams_count+A.grand_slams_count > 0
+ORDER BY W.player_id;
