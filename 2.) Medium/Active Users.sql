@@ -71,6 +71,6 @@ SELECT
     A.name
 FROM GroupedLogins G
 LEFT JOIN Accounts A ON G.id = A.id
-WHERE num_groups >= 4
+WHERE G.num_groups >= 4
 GROUP BY G.id
 ORDER BY G.id;
