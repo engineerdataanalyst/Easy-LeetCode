@@ -15,4 +15,5 @@ LEFT JOIN Users U2 ON T.driver_id = U2.users_id
 WHERE T.request_at BETWEEN '2013-10-01' AND '2013-10-03' AND
       U1.banned = 'No' AND
       U2.banned = 'No'
-GROUP BY T.request_at;
+GROUP BY T.request_at
+ORDER BY T.request_at;
