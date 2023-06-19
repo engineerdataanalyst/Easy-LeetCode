@@ -76,7 +76,7 @@ NewSpending AS
 (
     SELECT
         P2.user_id,
-        P1.spend_date AS spend_date,
+        P1.spend_date,
         P1.platform,
         COALESCE(P2.amount, 0) AS amount
     FROM PlatformArray P1
