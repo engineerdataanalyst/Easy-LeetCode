@@ -1,4 +1,4 @@
-/* The winning streak of a player is the number of consecutive wins uninterrupted by draws or losses.
+/* A player's winning streak is the number of consecutive wins uninterrupted by draws or losses.
 
    Write an SQL query to count the longest winning streak for each player. */
 
