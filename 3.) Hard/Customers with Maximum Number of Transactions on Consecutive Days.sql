@@ -60,7 +60,7 @@ NumberOfTransactions AS
 (
     SELECT
         *,
-        MAX(num_transactions) OVER() max_num_transactions
+        MAX(num_transactions) OVER() AS max_num_transactions
     FROM
     (
         SELECT
