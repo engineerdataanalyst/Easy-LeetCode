@@ -1,3 +1,8 @@
+/* A bank account is suspicious if the total income exceeds the max_income for this account for two or more consecutive months.
+   The total income of an account in some month is the sum of all its deposits in that month (i.e., transactions of the type 'Creditor').
+
+   Write an SQL query to report the IDs of all suspicious bank accounts. */
+
 WITH RECURSIVE IncomeSums AS
 (
     SELECT
