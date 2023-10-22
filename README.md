@@ -1,2 +1,2 @@
 # LeetCode
-This repository contains my solutions to SQL exercises from LeetCode.com
+This repository contains solutions to all of my SQL Query Exercises
