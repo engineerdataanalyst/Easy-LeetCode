@@ -6,12 +6,7 @@
    Write a solution to report the number of users that used each bus.
    Return the result table ordered by bus_id in ascending order. */
 
-WITH BusIds AS
-(
-    SELECT bus_id
-    FROM Buses
-),
-NewBuses AS
+WITH NewBuses AS
 (
     SELECT *
     FROM
