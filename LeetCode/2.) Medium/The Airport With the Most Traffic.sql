@@ -32,3 +32,4 @@ FlightRanks AS
 )
 SELECT airport_id
 FROM FlightRanks
+WHERE rank_num = 1;
