@@ -53,5 +53,5 @@ SELECT
 FROM Countries C
 LEFT JOIN TopWineries T1 ON C.country = T1.country
 LEFT JOIN SecondWineries S ON C.country = S.country
-LEFT JOIN ThirdWineries T2 on C.country = T2.country
+LEFT JOIN ThirdWineries T2 ON C.country = T2.country
 ORDER BY C.country;
