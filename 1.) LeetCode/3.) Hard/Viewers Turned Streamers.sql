@@ -9,11 +9,11 @@ WITH FirstViewerUsers AS
         SELECT
             user_id,
             session_type,
-            ROW_NUMBER() OVER(PARTITION BY user_id ORDER BY session_start) AS rank_num
+            ROW_NUMBER() OVER(PARTITION BY user_id ORDER BY session_start) AS row_num
         FROM Sessions
     ) S
     WHERE session_type = 'Viewer' AND
-          rank_num = 1
+          row_num = 1
 )
 SELECT
     F.user_id,
