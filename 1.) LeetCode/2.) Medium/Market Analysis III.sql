@@ -7,23 +7,17 @@ WITH Sellers AS
 (
     SELECT
         U.seller_id,
-        COUNT(DISTINCT I.item_id) AS num_items
+        COUNT(DISTINCT I.item_id) AS num_items,
+        DENSE_RANK() OVER(ORDER BY COUNT(DISTINCT I.item_id) DESC) AS rank_num
     FROM Users U
     LEFT JOIN Orders O ON U.seller_id = O.seller_id
     LEFT JOIN Items I ON O.item_id = I.item_id
     WHERE U.favorite_brand != I.item_brand
     GROUP BY U.seller_id
-),
-RankNums AS
-(
-    SELECT
-        *,
-        DENSE_RANK() OVER(ORDER BY num_items DESC) AS rank_num
-    FROM Sellers
 )
 SELECT
     seller_id,
     num_items
-FROM RankNums
+FROM Sellers
 WHERE rank_num = 1
 ORDER BY seller_id;
