@@ -5,7 +5,7 @@
 
    Return the result table ordered by state in ascending order, fraud_score in descending order, and policy_id in ascending order. */
 
-WITH percentiles AS
+WITH Percentiles AS
 (
     SELECT
         policy_id,
@@ -18,7 +18,7 @@ SELECT
     policy_id,
     state,
     fraud_score
-FROM percentiles
+FROM Percentiles
 WHERE fraud_score >= fifth_percentile
 ORDER BY
     state,
