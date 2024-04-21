@@ -25,7 +25,6 @@ prod_brands_sold_per_territory AS
         COUNT(*) AS num_prod_brands_sold
     FROM fct_customer_sales f
     INNER JOIN map_customer_territory m ON f.cust_id = m.cust_id
-    INNER JOIN dim_product d ON f.prod_sku_id = d.prod_sku_id
     WHERE QUARTER(order_date) = 4 AND
           YEAR(order_date) = 2021
     GROUP BY m.territory_id
