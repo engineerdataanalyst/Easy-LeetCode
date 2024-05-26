@@ -9,6 +9,8 @@ WITH wine_varieties AS
         variety,
         price
     FROM winemag_p1
+    WHERE region_1 IS NOT NULL AND
+          price IS NOT NULL
     
     UNION
     
@@ -17,6 +19,8 @@ WITH wine_varieties AS
         variety,
         price
     FROM winemag_p1
+    WHERE region_2 IS NOT NULL AND
+          price IS NOT NULL
 ),
 cheapest_varieties AS
 (
@@ -30,8 +34,6 @@ cheapest_varieties AS
             variety AS cheapest_variety,
             RANK() OVER(PARTITION BY region ORDER BY price) AS rank_num
         FROM wine_varieties
-        WHERE region IS NOT NULL AND
-              price IS NOT NULL
     ) r
     WHERE rank_num = 1
 ),
@@ -47,8 +49,6 @@ expensivest_varieties AS
             variety AS expensivest_variety,
             RANK() OVER(PARTITION BY region ORDER BY price DESC) AS rank_num
         FROM wine_varieties
-        WHERE region IS NOT NULL AND
-              price IS NOT NULL
     ) r
     WHERE rank_num = 1
 )
