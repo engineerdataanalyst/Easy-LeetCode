@@ -17,7 +17,7 @@ medal_ranks AS
         event,
         team,
         COUNT(*) AS num_medals,
-        RANK() OVER(PARTITION BY event ORDER BY COUNT(*) DESC, team) AS rank_num
+        DENSE_RANK() OVER(PARTITION BY event ORDER BY COUNT(*) DESC, team) AS rank_num
     FROM olympics_athletes_events
     WHERE year = 2016 AND
           medal IS NOT NULL
