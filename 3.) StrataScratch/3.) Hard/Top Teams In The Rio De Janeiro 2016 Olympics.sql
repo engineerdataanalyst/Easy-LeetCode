@@ -55,7 +55,7 @@ SELECT
     COALESCE(s.second_most_medal_team, 'No Team') AS second_most_medal_team,
     COALESCE(t.third_most_medal_team, 'No Team') AS third_most_medal_team
 FROM event_list e
-LEFT JOIN most_medal_teams m on e.event = m.event
+LEFT JOIN most_medal_teams m ON e.event = m.event
 LEFT JOIN second_most_medal_teams s ON e.event = s.event
 LEFT JOIN third_most_medal_teams t ON e.event = t.event
 ORDER BY e.event;
