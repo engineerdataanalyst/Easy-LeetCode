@@ -24,7 +24,7 @@ modified_cookbook_titles AS
 SELECT
     p.page_number AS left_page_number,
     m.title AS left_title,
-    (SELECT title
+    (SELECT c.title
      FROM cookbook_titles c
      WHERE c.page_number = 2*p.k+1) AS right_title
 FROM page_numbers p
