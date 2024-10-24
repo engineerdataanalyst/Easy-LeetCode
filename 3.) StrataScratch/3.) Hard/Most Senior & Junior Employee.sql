@@ -1,3 +1,8 @@
+/* Write a query to find the number of days between the longest and least tenured employee still working for the company.
+   Your output should include the number of employees with the longest-tenure,
+   the number of employees with the least-tenure, and 
+   the number of days between both the longest-tenured and least-tenured hiring dates. */
+
 WITH tenure_ranks AS
 (-- Rank the hire dates of all employees from earliest to latest..
  -- Ignore employees who have been terminated.
