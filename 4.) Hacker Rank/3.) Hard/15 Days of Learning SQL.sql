@@ -39,7 +39,6 @@ SubmissionList AS
         S.submission_date,
         H.hacker_id,
         H.name,
-        COUNT(*) AS num_hackers,
         RANK() OVER(PARTITION BY S.submission_date ORDER BY COUNT(*) DESC, H.hacker_id) AS rank_num
     FROM Submissions S
     INNER JOIN Hackers H ON S.hacker_id = H.hacker_id
