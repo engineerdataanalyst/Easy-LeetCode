@@ -22,7 +22,7 @@ WITH HackerList AS
     FROM Submissions S
     INNER JOIN HackerList H ON S.submission_date = DATEADD(day, 1, H.submission_date) AND
                                S.hacker_id = H.hacker_id
-    WHERE H.submission_date <= '2016-03-15'
+    WHERE S.submission_date <= '2016-03-15'
 ),
 HackerListAgg AS
 (-- Calculate the number of distinct hackers per submission date that meet the criteria.
